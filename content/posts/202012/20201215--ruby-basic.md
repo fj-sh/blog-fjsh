@@ -3,7 +3,7 @@ title: "Rubyの基礎チートシート"
 date: "2020-12-15T22:00:00.001Z"
 template: "post"
 draft: false
-slug: "basic-ruby"
+slug: "ruby-basic"
 category: "Ruby"
 tags:
   - "Ruby"
@@ -35,6 +35,23 @@ else
 end
 ```
 
+## case文
+
+```ruby
+country = 'italy'
+
+case country
+when 'japan'
+    'こんにちは'
+when 'us'
+    'Hello'
+when 'italy'
+    'ciao'
+else
+    '???'
+end
+```
+
 ## メソッドを定義する
 
 ```ruby
@@ -56,6 +73,9 @@ end
 greeting('japan')
 greeting('us')
 ```
+
+- Rubyは最後に評価された式が戻り地になるのが特徴
+- `return`などのキーワードは不要
 
 ### デフォルト値付きの引数
 
@@ -125,20 +145,34 @@ puts(fizzbuzz(7)) #7
 
 ### %記法で文字列を作る
 
-### ヒアドキュメント
+### ヒアドキュメント（行指向文字列リテラル）
+
+```ruby
+a = <<TEXT
+ヒアドキュメントは
+複数行に渡る長い文字列を作成するのに便利です。
+TEXT
+```
+
+- ヒアドキュメントの中では式展開が有効
+
+```ruby
+name = 'fjsh'
+a = <<TEXT
+こんにちは！#{name}さん。
+ヒアドキュメントの式展開です。
+TEXT
+
+puts a
+```
 
 ### フォーマットを指定して文字列を作成
 
-### 数値を文字列に変換する
+- `sprintf`メソッドを使うと、指定されたフォーマットの文字列を作成することができる
 
-### 配列を連結して1つの文字列にする
-
-
-## 数値
-
-### 指数表現
-
-
+```ruby
+sprintf('%0.3f', 1.2)  # 1.200
+```
 
 
 
