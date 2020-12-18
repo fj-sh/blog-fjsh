@@ -133,6 +133,104 @@ puts(fizzbuzz(7)) #7
 
 ## 配列
 
+```ruby
+a = [1, 2, 3]
+
+# 配列の最後に要素を追加する
+a << 2
+a << 3
+
+```
+
+###  配列の繰り返し処理
+- `|n|`の部分はブロック引数と呼ばれるもの
+- `each`メソッドから渡された配列の要素が入る
+
+```ruby
+numbers = [1, 2, 3, 4]
+sum = 0
+numbers.each do |n|
+    sum += n
+end
+
+puts sum  #10
+```
+
+- delete_if
+
+```ruby
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+a.delete_if do |n|
+    n.odd?
+end
+
+puts a
+```
+
+- mapメソッドを使うと、ブロックの戻り値が配列の要素となる新しい配列が作成される
+
+```ruby
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+new_numbers = []
+new_numbers = a.map { |n| n * 10 }
+p new_numbers # [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+```
+
+- selectメソッドは各要素に対してブロックを評価し、その戻り地が真の要素を集めた配列を返すメソッド
+
+```ruby
+numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+
+even_numbers = numbers.select { |n| n.even? }
+p even_numbers # [2, 4, 6, 8]
+```
+
+- rejectメソッドはブロックの戻り値が真になった要素を除外した配列を返す
+
+```ruby
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+non_multiples_of_three = numbers.reject { |n| n % 3 == 0 }
+p non_multiples_of_three  # [1, 2, 4, 5, 7, 8]
+```
+
+- findメソッドはブロックの戻り値が真になった最初の要素を返す
+
+```ruby
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+even_number = numbers.find { |n| n.even? }
+p even_number  # 2
+```
+
+- injectメソッドはたたみ込み演算を行う
+- 初回は`inject(n)`の`n`が`result`に入る
+- ブロックの第2引数には配列の各要素が入る
+- ブロックの戻り値は次の回に引き継がれ、ブロックの第1引数（result）に入る
+
+```ruby
+numbers = [1, 2, 3, 4, 5, 6]
+sum = numbers.inject(0) { |result, n| result + n }
+
+# (0 + 1 = 1) → (1 + 2 = 3) → (3 + 3 = 6) → (6 + 4 = 10) → (10 + 5 = 15) → (15 + 6 = 21)
+p sum  # 21
+```
+
+## Range
+
+- `..`は最後の値を範囲に含める
+- `...`は最後の値が範囲に含まれない
+
+```ruby
+range = 1..5  # 1以上5以下
+range.include?(0) # => false
+range.include?(1) # => true
+range.include?(5) # => true
+range = 1...5  # 1以上5未満
+range.include?(0) # => false
+range.include?(5) # => false
+```
+
 ## ハッシュ
 
 ## シンボル
@@ -241,3 +339,7 @@ puts(Date.today) # 2020-12-16
   - `p`は`\n`などの改行文字が改行文字のまま出力される
 ー `puts`と`print`は一般ユーザー向け、`p`は開発者向けの用途で作られている
 
+
+## Visual StudioにインストールしたRuby開発用プラグイン
+
+- [VSCodeの拡張機能でRailsと仲良くなる](https://qiita.com/hakshu/items/98ed12c32da97474b68d)
