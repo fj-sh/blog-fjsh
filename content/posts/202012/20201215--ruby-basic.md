@@ -1,5 +1,5 @@
 ---
-title: "Rubyの基礎チートシート"
+title: "Rubyの文法チートシート"
 date: "2020-12-15T22:00:00.001Z"
 template: "post"
 draft: false
@@ -7,12 +7,12 @@ slug: "ruby-basic"
 category: "Ruby"
 tags:
   - "Ruby"
-description: "サクッと調べるRubyの書き方"
+description: "Rubyでこれどうやって書くんだっけ？を調べるときに使う記事です。"
 ---
 
-Rubyの書き方で困ったときに参照するためのページです。
+`irb --prompt null -f`で`irb`のプロンプトの表示をなくすことができる。
 
-## if文
+## if 文
 
 ```ruby
 n = 11
@@ -35,7 +35,7 @@ else
 end
 ```
 
-## case文
+## case 文
 
 ```ruby
 country = 'italy'
@@ -74,7 +74,7 @@ greeting('japan')
 greeting('us')
 ```
 
-- Rubyは最後に評価された式が戻り地になるのが特徴
+- Ruby は最後に評価された式が戻り地になるのが特徴
 - `return`などのキーワードは不要
 
 ### デフォルト値付きの引数
@@ -174,18 +174,67 @@ fruits.each_with_index { |fruit, i| puts "#{i}: #{fruit}" }
 # 2: melon
 ```
 
-### with_indexを使った添え字付きの繰り返し処理
+### with_index を使った添え字付きの繰り返し処理
 
-mapメソッドとwith_indexメソッドを組み合わせて使うこともできる。
-なお、mapメソッドは各要素に対してブロックを評価した結果を新しい配列にして返す。
+map メソッドと with_index メソッドを組み合わせて使うこともできる。
+なお、map メソッドは各要素に対してブロックを評価した結果を新しい配列にして返す。
 
 ```ruby
 fruit = ['apple', 'orange', 'melon']  # => ["apple", "orange", "melon"]
 fruits.map.with_index { |fruit, i| "#{i}: #{fruit}" }  # => ["0: apple", "1: orange", "2: melon"]
 ```
 
-`with_index(1)`のように、with_indexに引数を渡せば、添字が引数で渡した数値から開始される。
+`with_index(1)`のように、with_index に引数を渡せば、添字が引数で渡した数値から開始される。
 
+### break で繰り返し処理を脱出する
+
+break を使うと、繰り返し処理を脱出することができる。
+
+```ruby
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].shuffle
+numbers.each do |n|
+    break if n == 5
+end
+```
+
+### throw と catch を使って一気に脱出する
+
+一気に外側のループまで脱出したい時は throw メソッドと catch メソッドを使う。
+
+```ruby
+catch タグ do
+  throw タグ
+end
+```
+
+```ruby
+fruits = ['apple', 'melon', 'orange', 'banana']
+numbers = [1, 2, 3, 4, 5]
+
+catch :done do
+    fruits.shuffle.each do |fruit|
+        numbers.shuffle.each do |n|
+            puts "#{fruit}, #{n}"
+            if fruit == 'orange' && n == 3
+                # すべての繰り返し処理を脱出する
+                throw :done
+            end
+        end
+
+    end
+end
+```
+
+### next
+
+繰り返し処理を途中で中断し、次の繰り返し処理に進める場合は next を使う。
+
+```ruby
+numbers.each do |n|
+    next if n.even?
+    puts n
+end
+```
 
 ## 配列
 
@@ -198,7 +247,8 @@ a << 3
 
 ```
 
-###  配列の繰り返し処理
+### 配列の繰り返し処理
+
 - `|n|`の部分はブロック引数と呼ばれるもの
 - `each`メソッドから渡された配列の要素が入る
 
@@ -224,7 +274,7 @@ end
 puts a
 ```
 
-- mapメソッドを使うと、ブロックの戻り値が配列の要素となる新しい配列が作成される
+- map メソッドを使うと、ブロックの戻り値が配列の要素となる新しい配列が作成される
 
 ```ruby
 a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -234,7 +284,7 @@ new_numbers = a.map { |n| n * 10 }
 p new_numbers # [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 ```
 
-- selectメソッドは各要素に対してブロックを評価し、その戻り地が真の要素を集めた配列を返すメソッド
+- select メソッドは各要素に対してブロックを評価し、その戻り地が真の要素を集めた配列を返すメソッド
 
 ```ruby
 numbers = [1, 2, 3, 4, 5, 6, 7, 8]
@@ -243,7 +293,7 @@ even_numbers = numbers.select { |n| n.even? }
 p even_numbers # [2, 4, 6, 8]
 ```
 
-- rejectメソッドはブロックの戻り値が真になった要素を除外した配列を返す
+- reject メソッドはブロックの戻り値が真になった要素を除外した配列を返す
 
 ```ruby
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -251,7 +301,7 @@ non_multiples_of_three = numbers.reject { |n| n % 3 == 0 }
 p non_multiples_of_three  # [1, 2, 4, 5, 7, 8]
 ```
 
-- findメソッドはブロックの戻り値が真になった最初の要素を返す
+- find メソッドはブロックの戻り値が真になった最初の要素を返す
 
 ```ruby
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -259,10 +309,10 @@ even_number = numbers.find { |n| n.even? }
 p even_number  # 2
 ```
 
-- injectメソッドはたたみ込み演算を行う
+- inject メソッドはたたみ込み演算を行う
 - 初回は`inject(n)`の`n`が`result`に入る
-- ブロックの第2引数には配列の各要素が入る
-- ブロックの戻り値は次の回に引き継がれ、ブロックの第1引数（result）に入る
+- ブロックの第 2 引数には配列の各要素が入る
+- ブロックの戻り値は次の回に引き継がれ、ブロックの第 1 引数（result）に入る
 
 ```ruby
 numbers = [1, 2, 3, 4, 5, 6]
@@ -274,14 +324,13 @@ p sum  # 21
 
 ### 要素の取得
 
-- 2つめから3つ分の要素を取り出す
+- 2 つめから 3 つ分の要素を取り出す
   - `a[1, 3]`
 - 最後の要素を取得する
   - `a[a.size - 1]`
   - `a.last`
-- 最後から2番目の要素から2つの要素を取得する
+- 最後から 2 番目の要素から 2 つの要素を取得する
   - `a[-2, 2]`
-  
 
 ```ruby
 a = [1, 2, 3, 4, 5]
@@ -333,7 +382,6 @@ a + b #=> [1, 2, 3]
 a # [1]
 ```
 
-
 ## Range
 
 - `..`は最後の値を範囲に含める
@@ -352,7 +400,6 @@ range.include?(5) # => false
 ## ハッシュ
 
 ## シンボル
-
 
 ## 文字列
 
@@ -390,9 +437,6 @@ puts a
 sprintf('%0.3f', 1.2)  # 1.200
 ```
 
-
-
-
 ## その他
 
 ### 式（Expression）と文（Statement）
@@ -400,9 +444,10 @@ sprintf('%0.3f', 1.2)  # 1.200
 - 値を返し、結果を変数に代入できるものが式
 - 値を返さず、変数に代入しようとすると構文エラーになるものが文
 
-文ではなく式になっているif文の例：
+文ではなく式になっている if 文の例：
+
 ```ruby
-a = 
+a =
   if true
     '真です'
   else
@@ -412,7 +457,7 @@ a =
 puts (a)
 
 b = def foo; end
-puts (b) 
+puts (b)
 ```
 
 ### 疑似変数
@@ -423,24 +468,23 @@ puts (b)
 - `__LINE__`：現在のソースファイル中の行番号
 - `__ENCODING__`：現在のソースファイルのスクリプトエンコーディング
 
-
 ### require
 
-- 組み込みライブラリでない標準ライブラリやgemを利用する場合は、明示的にライブラリを読み込む必要がある。
-
+- 組み込みライブラリでない標準ライブラリや gem を利用する場合は、明示的にライブラリを読み込む必要がある。
 
 ```ruby
 require 'date'
 puts(Date.today) # 2020-12-16
 ```
 
-自分で作成したRubyプログラムを読み込む場合も`require`を使う。
+自分で作成した Ruby プログラムを読み込む場合も`require`を使う。
+
 - 拡張子を含む場合：`require './sample.rb'`
-- 拡張子を含まなくてもOK：`require './sample'`
+- 拡張子を含まなくても OK：`require './sample'`
 
 ### load
 
-- `require`は1回しかライブラリやrbファイルを読み込まない
+- `require`は 1 回しかライブラリや rb ファイルを読み込まない
 - 無条件に指定したファイルを読み込みたい場合は`load`を使う
   - `load`を使う場合は拡張子の`.rb`を省略できない
 
@@ -448,16 +492,14 @@ puts(Date.today) # 2020-12-16
 
 - `require_relative`を使うと自分のファイルが存在するディレクトリがパスの起点になる
 
-
 ## ターミナルへの標準出力
 
 - `puts`：改行を加えて変数の内容やメソッドの戻り値をターミナルに出力する
 - `print`：改行を加えずに変数の内容やメソッドの戻り値をターミナルに出力する
 - `p`：改行を加えてターミナルに出力する。文字列を出力すると、その文字列がダブルクオートで囲まれる。
   - `p`は`\n`などの改行文字が改行文字のまま出力される
-ー `puts`と`print`は一般ユーザー向け、`p`は開発者向けの用途で作られている
+    ー `puts`と`print`は一般ユーザー向け、`p`は開発者向けの用途で作られている
 
+## Visual Studio にインストールした Ruby 開発用プラグイン
 
-## Visual StudioにインストールしたRuby開発用プラグイン
-
-- [VSCodeの拡張機能でRailsと仲良くなる](https://qiita.com/hakshu/items/98ed12c32da97474b68d)
+- [VSCode の拡張機能で Rails と仲良くなる](https://qiita.com/hakshu/items/98ed12c32da97474b68d)
