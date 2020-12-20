@@ -1,15 +1,16 @@
 ---
-title: "Rubyのハッシュ、シンボルの使い方"
+title: "Rubyでハッシュのキーの追加、取得"
 date: "2020-12-19T23:00:00.001Z"
 template: "post"
 draft: false
-slug: "ruby-hash-symbol"
+slug: "ruby-hash-add-get-change"
 category: "Ruby"
 tags:
   - "Ruby"
-description: "ハッシュ、シンボルの使い方のサンプル集です。"
+description: "Rubyでハッシュのキーを追加、取得する方法"
 ---
 
+Rubyでハッシュに特定のキー`key`、値`value`が含まれているか判定する方法、およびその値を取得する方法を説明する。
 
 
 ハッシュはキーと値の組み合わせでデータを管理するオブジェクトのこと。
