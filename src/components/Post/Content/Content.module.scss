@@ -38,7 +38,7 @@
       }
     }
 
-    & a {
+    & a:hover {
       text-decoration: underline;
     }
 
@@ -53,14 +53,49 @@
     }
 
     & h2 {
-      border-bottom: solid 2px #37474f;
+      position: absolute;
+      padding: 5px 0 5px 17px;
+      font-size: 1.55em;
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        display: inline-block;
+        width: 5px;
+        height: 100%;
+        border-radius: 5px;
+        background: linear-gradient(
+          0deg,
+          #ffa649 0%,
+          #ffa649 50%,
+          #f76456 50%,
+          #f7645b 100%
+        );
+      }
     }
 
     & h3 {
-      padding: 0.25em 0.5em;
+      position: relative;
+      padding: 5px 0 5px 17px;
       color: #494949;
-      background: transparent;
-      border-left: solid 3px #607d8b;
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        display: inline-block;
+        width: 5px;
+        height: 100%;
+        border-radius: 5px;
+        background: linear-gradient(
+          0deg,
+          #e91e63 0%,
+          #e53935 50%,
+          #f44336 50%,
+          #f06292 100%
+        );
+      }
     }
     & ul {
       & li {
