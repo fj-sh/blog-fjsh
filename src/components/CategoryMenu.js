@@ -64,7 +64,7 @@ const CategoryItem = styled.li`
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.5px;
-    color: ${props => props.theme.colors.gray};
+    color: ${props => props.theme.colors.black};
     @media screen and (max-width: ${props => props.theme.responsive.small}) {
       font-size: 12px;
     }

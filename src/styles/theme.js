@@ -11,6 +11,7 @@ const variables = {
     orange: "#ffa22b",
     gradient: "linear-gradient(-45deg,#ffa649,#f7645b,#805ed4)",
     grayDarker: "#77838c",
+    black: "#000000",
   },
   sizes: {
     bioWidth: "290px",

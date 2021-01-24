@@ -10,7 +10,7 @@ import styled from "styled-components";
 const Heading = styled.h1`
   margin: 0.5em 0 0.8em;
   font-size: 32px;
-  color: #fff;
+  color: #000;
   font-weight: 600;
   line-height: 44px;
   letter-spacing: 1px;
