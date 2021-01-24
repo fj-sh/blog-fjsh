@@ -1,15 +1,16 @@
 const variables = {
   colors: {
     base: "#121212",
-    background: "#21242d", //#141c23
-    blackLight: "#313746",
-    gray: "#727d86",
+    background: "#edf2f7",
+    blackLight: "#b9c7d2",
+    gray: "#93a5b1",
     silver: "#969fa7",
     whitesmoke: "#f1f4f7",
     highlight: "#20a8ea",
     red: "#f7615f",
     orange: "#ffa22b",
-    gradient: "linear-gradient(-45deg,#ffa649,#f7645b,#805ed4)"
+    gradient: "linear-gradient(-45deg,#ffa649,#f7645b,#805ed4)",
+    grayDarker: "#77838c",
   },
   sizes: {
     bioWidth: "290px",

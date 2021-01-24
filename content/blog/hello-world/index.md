@@ -1,5 +1,5 @@
 ---
-title: "I started a new blog"
+title: "Hello World!"
 date: "2020-01-24T01:01:01.284Z"
 category: "self"
 description: "ブログを始める"

@@ -9,7 +9,7 @@ const PostCardWrapper = styled.div`
     display: flex;
     align-items: start;
     padding: 1.4em 0;
-    color: #fff;
+    color: #000;
     border-top: solid 1px ${props => props.theme.colors.blackLight};
     &:hover {
       background: ${props => props.theme.colors.blackLight};
