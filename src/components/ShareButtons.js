@@ -46,9 +46,9 @@ const GitHubLink = styled.a`
 
 const ShareButtons = ({ slug, title, emoji }) => {
   const encodedTitle = encodeURIComponent(
-    `${emoji || "🐱"}${title} | RatBitesBack`
+    `${emoji || "🐱"}${title} | fjshonsoftware`
   );
-  const pageUrl = `https://ratbitesback.com${slug}`;
+  const pageUrl = `https://fjshonsoftware.com${slug}`;
   return (
     <Wrapper>
       <ShareTitle>SHARE</ShareTitle>
@@ -83,7 +83,7 @@ const ShareButtons = ({ slug, title, emoji }) => {
         </ShareLink>
       </ShareLinks>
       <GitHubLink
-        href={`https://github.com/fj-sh/ratbitesback/edit/master/content/blog${slug}index.md`}
+        href={`https://github.com/fj-sh/fjshonsoftware/edit/master/content/blog${slug}index.md`}
         rel="nofllow"
       >
         Edit on GitHub

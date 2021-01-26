@@ -10,7 +10,7 @@ const SEO = ({ description, lang, meta, title }) => {
       render={(data) => {
         const metaDescription =
           description || data.site.siteMetadata.description;
-        const defaultTitle = "RatBitesBack | fjsh's personal blog";
+        const defaultTitle = "fjshonsoftware";
         return (
           <Helmet
             htmlAttributes={{
