@@ -22,7 +22,7 @@ const SyntaxHighlightStyle = css`
   }
   pre[class*="language-"],
   :not(pre) > code[class*="language-"] {
-    background: ${props => props.theme.colors.blackLight};
+    background: ${props => props.theme.colors.black};
     border-radius: 5px;
     @media screen and (max-width: ${props => props.theme.responsive.small}) {
       border-radius: 0;

@@ -175,6 +175,8 @@ DRIVER    VOLUME NAME
 
 ### ボリュームをリストアする
 
-```bash
+以下のコマンドでバックアップしたボリュームをリストアできます。
 
+```bash
+$ docker run --rm -v mysqlvolume:/dest -v "$PWD":/src busybox tar xzf /src/backup.tar.gz -C /dest
 ```
