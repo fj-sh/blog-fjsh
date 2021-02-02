@@ -142,7 +142,7 @@ const postContentStyle = css`
     }
     td {
       background-color:  ${props => props.theme.colors.whitesmoke};
-      color: ${props => props.theme.colors.blackLight};
+      color: ${props => props.theme.colors.darkgray};
       padding: 10px 12px;
     }
     thead tr {

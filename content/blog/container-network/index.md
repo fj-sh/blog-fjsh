@@ -162,7 +162,8 @@ $ docker network inspect mydockernet
 ### Docker ネットワークにコンテナを作る
 
 1. 作成したネットワークに接続してコンテナを作成
-2.
+2. ネットワーク接続を確認する
+3. 名前を使った通信ができることを確認する
 
 #### 作成したネットワークに接続してコンテナを作成
 
@@ -175,4 +176,26 @@ $ docker run -dit --name web02 -p 8081:80 --net mydockernet httpd:2.4
 
 ```shell
 $ docker network inspect mydockernet
+```
+
+#### 名前を使った通信ができることを確認する
+
+```shell
+$ docker run --rm -it --net mydockernet ubuntu /bin/bash
+root@28e180f4d1b5:/# apt update
+root@28e180f4d1b5:/# apt -y upgrade
+root@28e180f4d1b5:/# apt install -y iproute2 iputils-ping curl
+
+# ping -c 2 web01
+PING web01 (172.18.0.2) 56(84) bytes of data.
+64 bytes from web01.mydockernet (172.18.0.2): icmp_seq=1 ttl=64 time=0.084 ms
+64 bytes from web01.mydockernet (172.18.0.2): icmp_seq=2 ttl=64 time=0.060 ms
+
+--- web01 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1030ms
+rtt min/avg/max/mdev = 0.060/0.072/0.084/0.012 ms
+root@28e180f4d1b5:/# 
+
+root@28e180f4d1b5:/# curl http://web01
+<html><body><h1>It works!</h1></body></html>
 ```
