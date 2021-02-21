@@ -65,7 +65,25 @@ REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
 myphpimage   latest    dcc3f466b92a   27 minutes ago   245MB
 
 $ docker run -dit --name myphp -p 8080:80 myphpimage
+
 ```
+
+
+## Docker hubにイメージを登録する
+
+Dockerイメージ名はDocker Hubに登録された`<Docker ID>/<リポジトリ名>`に合わせるb必要があります。
+
+```shell
+$ docker tag myphpimage fjsh/myphpimage
+```
+
+```shell
+$ docker login
+docker push <ID>/<リポジトリ名>
+```
+
+## リポジトリに登録したイメージを使う
+
 
 
 ## コンテナからイメージを作る
